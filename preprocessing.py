@@ -78,6 +78,12 @@ def write_full_csv_data(full_data_rows_list, full_csv_name):
 
 
 def main():
+    """
+    Performs the following tasks:
+        - Obtains a list will all csv files in data directory
+        - Reads all the data from those files
+        - Writes a single csv file with all that data
+    """
     load_dotenv()
     file_path_list = get_file_path_list(os.getenv('DATA_DIRECTORY'))
     full_data_row_list = read_csv_data(file_path_list)
