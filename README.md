@@ -80,10 +80,12 @@ It has the following structure:
 | `last_name`       | `text` |
 | `title`           | `text` |
 
-`PRIMARY KEY` is `(title, first_name, last_name)`. As we do not wish to record the number of times a user has listened
-to a song, but rather if they have or not, these fields are enough for the primary key and it helps us reduce the 
-occupied space by this table.
+`PRIMARY KEY` is `(title, first_name, last_name)`. 
 
+**Note:** This `PRIMARY KEY` might not result in a unique record for every log in the csv files, but given the 
+nature of the query: to obtain a user first and last name if they have listened to a song, we do not need a unique
+record per csv line. What we need is only to remember every person that has listened a given song at least once. This
+is taken care by the table design.
 
 ## ETL Pipeline
 
