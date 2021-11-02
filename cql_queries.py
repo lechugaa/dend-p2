@@ -16,7 +16,7 @@ keyspace_drop = "DROP KEYSPACE IF EXISTS {};"
 
 # CREATE TABLES
 query_1_table_create = """
-    CREATE TABLE IF NOT EXISTS music_library_1 (
+    CREATE TABLE IF NOT EXISTS song_library_table (
         artist text,
         title text,
         length float,
@@ -27,7 +27,7 @@ query_1_table_create = """
 """
 
 query_2_table_create = """
-    CREATE TABLE IF NOT EXISTS music_library_2 (
+    CREATE TABLE IF NOT EXISTS user_reproductions_table (
         artist text,
         title text,
         first_name text,
@@ -40,7 +40,7 @@ query_2_table_create = """
 """
 
 query_3_table_create = """
-    CREATE TABLE IF NOT EXISTS music_library_3 (
+    CREATE TABLE IF NOT EXISTS song_users_table (
         first_name text,
         last_name text,
         title text,
@@ -50,40 +50,40 @@ query_3_table_create = """
 
 # INSERT RECORDS
 query_1_table_insert = """
-    INSERT INTO music_library_1 (artist, title, length, session_id, item_in_session)
+    INSERT INTO song_library_table (artist, title, length, session_id, item_in_session)
     VALUES (%s, %s, %s, %s, %s);
 """
 
 query_2_table_insert = """
-    INSERT INTO music_library_2 (artist, title, first_name, last_name, user_id, session_id, item_in_session)
+    INSERT INTO user_reproductions_table (artist, title, first_name, last_name, user_id, session_id, item_in_session)
     VALUES (%s, %s, %s, %s, %s, %s, %s);
 """
 
 query_3_table_insert = """
-    INSERT INTO music_library_3 (first_name, last_name, title)
+    INSERT INTO song_users_table (first_name, last_name, title)
     VALUES (%s, %s, %s);
 """
 
 # SELECT QUERIES
 select_query_1 = """
-    SELECT artist, title, length FROM music_library_1 
+    SELECT artist, title, length FROM song_library_table 
     WHERE session_id = 338 AND item_in_session = 4;
 """
 
 select_query_2 = """
-    SELECT artist, title, first_name, last_name FROM music_library_2 
+    SELECT artist, title, first_name, last_name FROM user_reproductions_table 
     WHERE user_id = 10 AND session_id = 182;
 """
 
 select_query_3 = """
-    SELECT first_name, last_name FROM music_library_3 
+    SELECT first_name, last_name FROM song_users_table 
     WHERE title = 'All Hands Against His Own';
 """
 
 # DROP TABLES
-query_1_table_drop = "DROP TABLE IF EXISTS music_library_1;"
-query_2_table_drop = "DROP TABLE IF EXISTS music_library_2;"
-query_3_table_drop = "DROP TABLE IF EXISTS music_library_3;"
+query_1_table_drop = "DROP TABLE IF EXISTS song_library_table;"
+query_2_table_drop = "DROP TABLE IF EXISTS user_reproductions_table;"
+query_3_table_drop = "DROP TABLE IF EXISTS song_users_table;"
 
 # QUERIES LIST
 create_table_queries = [query_1_table_create, query_2_table_create, query_3_table_create]
