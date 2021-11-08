@@ -61,8 +61,8 @@ class ETLTest(unittest.TestCase):
         rows = self.session.execute(select_query_3)
         expected_rows = [
             {'first_name': 'Jacqueline', 'last_name': 'Lynch'},
-            {'first_name': 'Sara', 'last_name': 'Johnson'},
-            {'first_name': 'Tegan', 'last_name': 'Levine'}
+            {'first_name': 'Tegan', 'last_name': 'Levine'},
+            {'first_name': 'Sara', 'last_name': 'Johnson'}
         ]
         for row, expected_row in zip(rows, expected_rows):
             self.assertEqual(row.first_name, expected_row['first_name'], 'Obtained incorrect first name from query!')

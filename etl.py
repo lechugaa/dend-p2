@@ -22,7 +22,7 @@ def process_full_csv(session: Session):
             # table 2 insertion
             session.execute(query_2_table_insert, (line[0], line[9], line[1], line[4], int(line[10]), int(line[8]), int(line[3])))
             # table 3 insertion
-            session.execute(query_3_table_insert, (line[1], line[4], line[9]))
+            session.execute(query_3_table_insert, (line[1], line[4], int(line[10]), line[9]))
 
 
 def main():

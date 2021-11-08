@@ -16,7 +16,7 @@ keyspace_drop = "DROP KEYSPACE IF EXISTS {};"
 
 # CREATE TABLES
 query_1_table_create = """
-    CREATE TABLE IF NOT EXISTS song_library_table (
+    CREATE TABLE IF NOT EXISTS songs_per_session_and_item (
         artist text,
         title text,
         length float,
@@ -27,7 +27,7 @@ query_1_table_create = """
 """
 
 query_2_table_create = """
-    CREATE TABLE IF NOT EXISTS user_reproductions_table (
+    CREATE TABLE IF NOT EXISTS songs_per_user_and_session (
         artist text,
         title text,
         first_name text,
@@ -35,55 +35,56 @@ query_2_table_create = """
         user_id int,
         session_id int,
         item_in_session int,
-        PRIMARY KEY (user_id, session_id, item_in_session)
+        PRIMARY KEY ((user_id, session_id), item_in_session)
     );
 """
 
 query_3_table_create = """
-    CREATE TABLE IF NOT EXISTS song_users_table (
+    CREATE TABLE IF NOT EXISTS users_per_song (
         first_name text,
         last_name text,
+        user_id int,
         title text,
-        PRIMARY KEY (title, first_name, last_name)
+        PRIMARY KEY (title, user_id)
     );
 """
 
 # INSERT RECORDS
 query_1_table_insert = """
-    INSERT INTO song_library_table (artist, title, length, session_id, item_in_session)
+    INSERT INTO songs_per_session_and_item (artist, title, length, session_id, item_in_session)
     VALUES (%s, %s, %s, %s, %s);
 """
 
 query_2_table_insert = """
-    INSERT INTO user_reproductions_table (artist, title, first_name, last_name, user_id, session_id, item_in_session)
+    INSERT INTO songs_per_user_and_session (artist, title, first_name, last_name, user_id, session_id, item_in_session)
     VALUES (%s, %s, %s, %s, %s, %s, %s);
 """
 
 query_3_table_insert = """
-    INSERT INTO song_users_table (first_name, last_name, title)
-    VALUES (%s, %s, %s);
+    INSERT INTO users_per_song (first_name, last_name, user_id, title)
+    VALUES (%s, %s, %s, %s);
 """
 
 # SELECT QUERIES
 select_query_1 = """
-    SELECT artist, title, length FROM song_library_table 
+    SELECT artist, title, length FROM songs_per_session_and_item 
     WHERE session_id = 338 AND item_in_session = 4;
 """
 
 select_query_2 = """
-    SELECT artist, title, first_name, last_name FROM user_reproductions_table 
+    SELECT artist, title, first_name, last_name FROM songs_per_user_and_session 
     WHERE user_id = 10 AND session_id = 182;
 """
 
 select_query_3 = """
-    SELECT first_name, last_name FROM song_users_table 
+    SELECT first_name, last_name FROM users_per_song 
     WHERE title = 'All Hands Against His Own';
 """
 
 # DROP TABLES
-query_1_table_drop = "DROP TABLE IF EXISTS song_library_table;"
-query_2_table_drop = "DROP TABLE IF EXISTS user_reproductions_table;"
-query_3_table_drop = "DROP TABLE IF EXISTS song_users_table;"
+query_1_table_drop = "DROP TABLE IF EXISTS songs_per_session_and_item;"
+query_2_table_drop = "DROP TABLE IF EXISTS songs_per_user_and_session;"
+query_3_table_drop = "DROP TABLE IF EXISTS users_per_song;"
 
 # QUERIES LIST
 create_table_queries = [query_1_table_create, query_2_table_create, query_3_table_create]

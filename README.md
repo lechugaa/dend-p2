@@ -36,7 +36,7 @@ are:
 Due to the analytical purposes of this database, three different tables were designed to address each of the desired 
 queries.
 
-### Song Library Table
+### Songs Per Session and_Item
 
 This tables helps the analytics team find a song when they have knowledge of the session and the item in session. It has
 the following structure:
@@ -51,7 +51,7 @@ the following structure:
 
 `PRIMARY KEY` is `(session_id, item_in_session)`.
 
-### User Reproductions Table
+### Songs Per User and Session
 
 This tables helps the analytics team find the name of the artist, song and user when they have knowledge of the 
 user id and the session id. The results are returned in ascending order of the item in session column. It has the 
@@ -67,9 +67,9 @@ following structure:
 | `session_id`      | `int`  |
 | `item_in_session` | `int`  |
 
-`PRIMARY KEY` is `(user_id, session_id, item_in_session)`.
+`PRIMARY KEY` is `((user_id, session_id), item_in_session)`.
 
-### Song Users Table
+### Users Per Song
 
 This tables helps the analytics team find the first and last name of the users that have listened to a specific song. 
 It has the following structure:
@@ -78,14 +78,15 @@ It has the following structure:
 |:-----------------:|:------:|
 | `first_name`      | `text` |
 | `last_name`       | `text` |
+| `user_id`         | `int`  |
 | `title`           | `text` |
 
-`PRIMARY KEY` is `(title, first_name, last_name)`. 
+`PRIMARY KEY` is `(title, user_id)`. 
 
-**Note:** This `PRIMARY KEY` might not result in a unique record for every log in the csv files, but given the 
-nature of the query: to obtain a user first and last name if they have listened to a song, we do not need a unique
-record per csv line. What we need is only to remember every person that has listened a given song at least once. This
-is taken care by the table design.
+Note: This PRIMARY KEY might not result in a unique record for every log in the csv files, but given the nature of the 
+query: to obtain a user first and last name if they have listened to a song, we do not need a unique record per csv 
+line. What we need is only to remember every person that has listened a given song at least once. 
+This is taken care by the table design.
 
 ## ETL Pipeline
 
