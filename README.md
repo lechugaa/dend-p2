@@ -206,5 +206,5 @@ The results are:
 | first_name | last_name |
 |:----------:|:---------:|
 | Jacqueline |     Lynch |
-|       Sara |   Johnson |
 |      Tegan |    Levine |
+|       Sara |   Johnson |
