@@ -166,7 +166,8 @@ python -m unittest ETLTest.py
 
 To review the design queries, you can consult the `test.ipynb`. There the following sample queries are executed:
 
-**What user level is having the most repoductions?**
+**Give me the artist, song title and song's length in the music app history that was heard during sessionId = 338, 
+and itemInSession = 4**
 
 ```sql
 SELECT artist, title, length FROM song_library_table 
@@ -179,7 +180,8 @@ The results are:
 |:---------:|:-------------------------------:|:----------:|
 | Faithless | Music Matters (Mark Knight Dub) | 495.307312 |
 
-**Which are the top ten locations with the most reproductions?**
+**Give me only the following: name of artist, song (sorted by itemInSession) and user (first and last name) for 
+userid = 10, sessionid = 182**
 
 ```sql
 SELECT artist, title, first_name, last_name FROM user_reproductions_table 
@@ -194,7 +196,8 @@ The results are:
 | Sebastien Tellier | Kilometer                                         | Sylvie     | Cruz      |
 | Lonnie Gordon     | Catch You Baby (Steve Pitron & Max Sanna Radio... | Sylvie     | Cruz      |
 
-**What day of the week are we most listened to?**
+**Give me every user name (first and last) in my music app history who listened to the song 
+'All Hands Against His Own'**
 
 ```sql
 SELECT first_name, last_name FROM song_users_table 
